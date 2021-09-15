@@ -20,8 +20,9 @@
 // 76 ms
 var missingNumber = function (nums) {
   var sum = nums.reduce((acc, i) => acc + i, 0);
-  var sumProg = (2 + nums.length - 1)  / 2 * (nums.length);
-
+  var n = nums.length;
+  var sumProg = n * (n + 1) / 2;
+  
   return sumProg - sum;
 };
 
