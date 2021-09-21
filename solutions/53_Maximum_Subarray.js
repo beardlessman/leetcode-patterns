@@ -32,7 +32,7 @@ var maxSubArray = function (nums) {
     const num = nums[i];
 
     sum = Math.max(num, sum + num);
-    best = Math.max(best, sum, num);
+    best = Math.max(best, sum);
   }
 
   return best;
