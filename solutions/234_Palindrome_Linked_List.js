@@ -94,49 +94,91 @@ class ListNode {
 //   return true;
 // };
 
-
 // 108 ms, faster than 100.00%
-var isPalindrome = function (head) {
-  let cur = head;
-  let prev = null;
-  let next;
-  let nextnext;
+// var isPalindrome = function (head) {
+//   let cur = head;
+//   let prev = null;
+//   let next;
+//   let nextnext;
+//   let fast = head;
+
+//   while (fast && fast.next) {
+//     next = cur.next;
+//     nextnext = fast.next.next;
+
+//     cur.next = prev;
+//     prev = cur;
+
+//     cur = next;
+//     fast = nextnext;
+//   }
+
+//   if (fast !== null) {
+//     // нечетное кол-во узлов
+//     let temp = {...cur};
+//     temp.next = prev;
+//     prev = temp;
+//   }
+
+//   while (cur) {
+//     if (cur.val !== prev.val) {
+//       return false;
+//     }
+//     cur = cur.next;
+//     prev = prev.next;
+//   }
+
+//   return true;
+// };
+
+var middleNode = function (head) {
+  let slow = head;
   let fast = head;
 
   while (fast && fast.next) {
-    next = cur.next;
-    nextnext = fast.next.next;
-
-    cur.next = prev;
-    prev = cur;
-
-    cur = next;
-    fast = nextnext;
+    slow = slow.next;
+    fast = fast.next.next;
   }
 
-  if (fast !== null) {
-    // нечетное кол-во узлов
-    let temp = {...cur};
-    temp.next = prev;
-    prev = temp;
-  }
+  return slow;
+};
+
+var reverseList = function (head) {
+  let cur = head;
+  let prev = null;
+  let next;
 
   while (cur) {
-    if (cur.val !== prev.val) {
+      next = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
+  }
+  return prev;
+};
+
+// 160 ms, faster than 88.52% 
+var isPalindrome = function (head) {
+  var middle = middleNode(head);
+  var reverse = reverseList(middle);
+
+  while (reverse) {
+    if (reverse.val !== head.val) {
       return false;
     }
-    cur = cur.next;
-    prev = prev.next;
+
+    reverse = reverse.next;
+    head = head.next;
   }
 
   return true;
-};
+}
 
 let node1 = new ListNode(1);
 let node2 = new ListNode(2);
 let node3 = new ListNode(3);
-let node4 = new ListNode(4);
-let node5 = new ListNode(5);
+let node4 = new ListNode(2);
+let node5 = new ListNode(1);
 node1.next = node2;
 node2.next = node3;
 node3.next = node4;
