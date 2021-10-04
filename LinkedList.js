@@ -1,3 +1,5 @@
+// https://frontend-stuff.com/blog/linked-lists-with-javascript/
+
 class ListNode {
   constructor(value, next = null) {
     this.value = value;
