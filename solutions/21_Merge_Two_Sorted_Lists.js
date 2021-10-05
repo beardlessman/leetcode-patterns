@@ -20,45 +20,6 @@ class ListNode {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-// var mergeTwoLists = function (l1, l2) {
-//   if (!l1 && !l2) {
-//     return null;
-//   }
-
-//   if (!l1) {
-//     return l2;
-//   }
-
-//   if (!l2) {
-//     return l1;
-//   }
-
-//   var pointer1 = l1;
-//   var pointer2 = l2;
-
-//   while (pointer1) {
-//     console.log({
-//       1: JSON.stringify(pointer1),
-//       2: JSON.stringify(pointer2),
-//     });
-
-//     var temp1 = pointer1.next;
-//     var temp2 = pointer2.next;
-
-//     if (pointer2.val > pointer1.val) {
-//         pointer1.next = pointer2;
-//     } else if (pointer1.val > pointer2.val) {
-//         pointer2.next = pointer1;
-//     } else {
-//         pointer1.next = pointer2;
-//     }
-
-//     pointer1 = temp1;
-//     pointer2 = temp2;
-//   }
-
-//   return JSON.stringify(l1);
-// };
 
 var mergeTwoLists = function (l1, l2) {
   var merged = new ListNode(0);
