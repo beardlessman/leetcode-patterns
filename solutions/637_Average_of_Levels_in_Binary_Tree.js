@@ -55,19 +55,47 @@ function TreeNode(val, left, right) {
 // };
 
 // 132
-var averageOfLevels = function(root) {
-    let q = [root], ans = []
-    while (q.length) {
-        let qlen = q.length, row = 0
-        for (let i = 0; i < qlen; i++) {
-            let curr = q.shift()
-            row += curr.val
-            if (curr.left) q.push(curr.left)
-            if (curr.right) q.push(curr.right)
-        }
-        ans.push(row/qlen)
+// var averageOfLevels = function(root) {
+//     let q = [root], ans = []
+//     while (q.length) {
+//         let qlen = q.length, row = 0
+//         for (let i = 0; i < qlen; i++) {
+//             let curr = q.shift()
+//             row += curr.val
+//             if (curr.left) q.push(curr.left)
+//             if (curr.right) q.push(curr.right)
+//         }
+//         ans.push(row/qlen)
+//     }
+//     return ans
+// };
+
+var averageOfLevels = function (root) {
+  var q = [root];
+
+  result = [];
+
+  while (q.length) {
+    let l = q.length;
+    sum = 0;
+
+    for (let i = 0; i < l; i++) {
+      node = q.shift();
+      sum += node.val;
+
+      if (node.left) {
+        q.push(node.left);
+      }
+
+      if (node.right) {
+        q.push(node.right);
+      }
     }
-    return ans
+
+    result.push(sum / l);
+  }
+
+  return result;
 };
 
 let node15 = new TreeNode(15);
