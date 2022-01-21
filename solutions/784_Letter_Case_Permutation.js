@@ -28,22 +28,23 @@ var letterCasePermutation = function (s) {
     return Array.from(result);
 };
 
-var letterCasePermutation = function (S) {
-    const result = [S];
-    for (let i = 0; i < S.length; i++) {
-        if (/[0-9]/.test(S[i])) continue;
-        const size = result.length;
-        for (let j = 0; j < size; j++) {
-            const node = result.shift();
-            result.push(
-                node.slice(0, i) + node[i].toLowerCase() + node.slice(i + 1)
-            );
-            result.push(
-                node.slice(0, i) + node[i].toUpperCase() + node.slice(i + 1)
-            );
+// 84 ms, faster than 90.45%
+var letterCasePermutation = function (s) {
+    let result = new Set();
+
+    const traverse = (current, s, i) => {
+        if (current.length === s.length) {
+            result.add(current);
+            return;
         }
-    }
-    return result;
+
+        traverse(current + s[i], s, i + 1);
+        traverse(current + s[i].toUpperCase(), s, i + 1);
+    };
+
+    traverse("", s.toLowerCase(), 0);
+
+    return Array.from(result);
 };
 
 console.log(letterCasePermutation("a1b2")); // ["a1b2","a1B2","A1b2","A1B2"]
